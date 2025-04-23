@@ -35,6 +35,34 @@ TripoSG is an advanced high-fidelity, high-quality and high-generalizability ima
 * [2025-04] Release TripoSG-scribble, a CFG-distilled, 512 token model for fast shape prototyping from scribble+prompt! Try the online demo [here](https://huggingface.co/spaces/VAST-AI/TripoSG-scribble).
 * [2025-03] Release of TripoSG 1.5B parameter rectified flow model and VAE trained on 2048 latent tokens, along with inference code and interactive demo
 
+## 🧩 ComfyUI Support
+
+This is a quick and dirty wrapper of TripoSG in [ComfyUI](https://github.com/comfyanonymous/ComfyUI).
+
+**Available Nodes:**
+- **TripoSGModelLoader**: Loads the TripoSG or TripoSG-scribble model for inference.
+- **TripoSGInference**: Runs 3D mesh generation from an input image (and optional prompt/conditioning).
+- **TripoSGConditioning**: Prepares prompt and scribble confidence conditioning for the scribble model.
+- **TripoSGPrepareImage**: Preprocesses and crops input images for optimal 3D generation. Used for normal TripoSG model.
+
+**Example Workflows:**
+- Example ComfyUI workflows are provided in [`assets/workflows/`](assets/workflows/):
+  - [`example.json`](assets/workflows/example.json): Standard image-to-3D workflow.
+  ![standard_input](assets/example_data/jkghed.png)
+  ![standard_output](assets/workflows/example.png)
+
+  - [`scribble.json`](assets/workflows/scribble.json): Scribble+prompt to 3D workflow.
+  ![scribble](assets/workflows/scribble_1.png)
+  ![scribble](assets/workflows/scribble_2.png)
+
+To use these nodes, simply clone the repo to your ComfyUI custom nodes directory and restart ComfyUI. Then from the repo dir run:
+
+```bash
+pip install -r requirements.txt
+```
+
+You can then load the provided workflows and generate high-fidelity 3D meshes directly from images or scribbles.
+
 ## 🔨 Installation
 
 Clone the repo:

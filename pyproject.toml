@@ -1,0 +1,29 @@
+[project]
+name = "comfyui-triposg"
+description = "TripoSG: High-Fidelity 3D Shape Synthesis using Large-Scale Rectified Flow Models"
+version = "0.1.0"
+license = "LICENSE"
+dependencies = [
+  "diffusers",
+  "transformers",
+  "einops",
+  "huggingface_hub",
+  "opencv-python",
+  "trimesh",
+  "omegaconf",
+  "scikit-image",
+  "numpy>=1.22.3",
+  "peft",
+  "jaxtyping",
+  "typeguard",
+  "diso",
+  "pymeshlab",
+]
+
+[project.urls]
+Repository = "https://github.com/tungnguyensipher/ComfyUI-TripoSG"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = "tungnguyen"
+DisplayName = "Tung Nguyen"
