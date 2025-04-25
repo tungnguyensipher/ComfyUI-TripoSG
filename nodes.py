@@ -2,11 +2,11 @@ import os
 import cv2
 import numpy as np
 import torch
-import trimesh
 from huggingface_hub import snapshot_download
 from PIL import Image
 
 import folder_paths
+import comfy.utils
 import comfy.model_management as mm
 from comfy_extras.nodes_hunyuan3d import MESH
 
@@ -151,6 +151,11 @@ class TripoSGInference:
 
         pipe_class = model.__class__.__name__
         generator = torch.Generator(device=model.device).manual_seed(seed)
+        pbar = comfy.utils.ProgressBar(steps + 1)
+
+        def step_callback(pipe, step, t, callback_kwargs):
+            pbar.update(1)
+            return callback_kwargs
 
         if pipe_class == "TripoSGPipeline":
             outputs = model(
@@ -158,6 +163,7 @@ class TripoSGInference:
                 generator=generator,
                 num_inference_steps=steps,
                 guidance_scale=cfg,
+                callback_on_step_end=step_callback,
             ).samples[0]
         elif pipe_class == "TripoSGScribblePipeline":
             prompt = conditioning.get("prompt", "")
@@ -172,6 +178,7 @@ class TripoSGInference:
                 use_flash_decoder=False,
                 dense_octree_depth=8,
                 hierarchical_octree_depth=8,
+                callback_on_step_end=step_callback,
                 **conditioning,
             ).samples[0]
         else:
