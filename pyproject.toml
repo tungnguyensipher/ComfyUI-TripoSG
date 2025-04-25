@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-triposg"
 description = "TripoSG: High-Fidelity 3D Shape Synthesis using Large-Scale Rectified Flow Models"
-version = "0.1.0"
+version = "0.1.1"
 license = "LICENSE"
 dependencies = [
   "diffusers",
@@ -26,4 +26,4 @@ Repository = "https://github.com/tungnguyensipher/ComfyUI-TripoSG"
 
 [tool.comfy]
 PublisherId = "tungnguyen"
-DisplayName = "Tung Nguyen"
+DisplayName = "ComfyUI-TripoSG"
